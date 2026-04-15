@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #0f0f1a;
+  background-image:
+    linear-gradient(rgba(92,92,148,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(92,92,148,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  color: #d0d0e8;
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+/* ── Nav ── */
+nav {
+  border-bottom: 2px solid #5c5c94;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(15,15,26,0.95);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+nav .brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+nav a {
+  color: #9090c0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+nav a:hover { color: #fff; }
+
+/* ── Main container ── */
+.container {
+  max-width: 780px;
+  margin: 60px auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Panel ── */
+.panel {
+  background: #1a1a2e;
+  border: 3px solid #5c5c94;
+  border-radius: 20px;
+  padding: 40px 48px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  margin-bottom: 32px;
+}
+
+/* ── Typography ── */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9090c0;
+  margin: 32px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2e2e50;
+}
+p { margin-bottom: 14px; font-size: 0.97rem; color: #c0c0da; }
+ul { padding-left: 20px; margin-bottom: 14px; }
+li { font-size: 0.97rem; color: #c0c0da; margin-bottom: 6px; }
+a { color: #7878cc; text-decoration: none; }
+a:hover { color: #aaaaee; text-decoration: underline; }
+strong { color: #e0e0f0; }
+
+.meta {
+  font-size: 0.85rem;
+  color: #5c5c94;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: block;
+}
+
+/* ── Game card ── */
+.game-card {
+  background: #1a1a2e;
+  border: 3px solid #5c5c94;
+  border-radius: 20px;
+  padding: 32px 40px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.game-card h2 {
+  font-size: 1.3rem;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+.game-card p { margin: 0; }
+.badge {
+  display: inline-block;
+  background: #1f6130;
+  border: 2px solid #339933;
+  border-radius: 8px;
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ccffcc;
+  margin-right: 8px;
+}
+.btn {
+  display: inline-block;
+  background: #252550;
+  border: 2px solid #5c5c94;
+  border-radius: 14px;
+  padding: 10px 24px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d0d0e8;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  margin-top: 4px;
+  align-self: flex-start;
+}
+.btn:hover {
+  background: #303068;
+  border-color: #8888cc;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Hero ── */
+.hero {
+  text-align: center;
+  padding: 60px 24px 40px;
+}
+.hero h1 { font-size: 2.6rem; }
+.hero p { font-size: 1.05rem; max-width: 500px; margin: 16px auto 0; }
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.8rem;
+  color: #3a3a60;
+  border-top: 1px solid #1e1e36;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
