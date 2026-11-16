@@ -4,130 +4,290 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taxi Dash</title>
-  <meta name="description" content="Taxi Dash: a one-thumb arcade driving game for iPhone and iPad. Pick up. Drift. Drop off.">
+  <meta name="description" content="Taxi Dash is a one-thumb arcade driving game for iPhone and iPad. Pick up fares, choose your own route, drift round corners and beat the clock. Out 14 January 2027.">
   <meta property="og:title" content="Taxi Dash">
-  <meta property="og:description" content="Pick up. Drift. Drop off. A one-thumb arcade driving game for iPhone and iPad.">
-  <meta property="og:image" content="https://aknightsgame.github.io/taxi-dash/media/header.jpg">
-  <link rel="stylesheet" href="../assets/style.css">
+  <meta property="og:description" content="Pick up. Drift. Drop off. A one-thumb arcade driving game for iPhone and iPad, out 14 January 2027.">
+  <meta property="og:image" content="https://aknightsgame.github.io/taxi-dash/media/header-small.jpg">
+  <meta name="theme-color" content="#3e424a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lilita+One&display=swap" rel="stylesheet">
   <style>
-    .wide { max-width: 1100px; }
-    .header-img { width: 100%; display: block; border-radius: 20px; border: 3px solid #5c5c94; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
-    .tagline { font-size: 1.25rem; color: #ffc93c; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin: 8px 0 4px; }
-    .lede { max-width: 640px; margin: 12px auto 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 16px; }
-    .grid figure { margin: 0; }
-    .grid video, .grid img { width: 100%; display: block; border-radius: 14px; border: 2px solid #5c5c94; background: #000; }
-    .grid figcaption { font-size: 0.85rem; color: #c0c0da; margin-top: 8px; text-align: center; }
-    .preview { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
-    .preview video { width: 300px; max-width: 100%; border-radius: 18px; border: 3px solid #5c5c94; background: #000; }
-    .preview div { flex: 1; min-width: 260px; }
-    .facts li { margin-bottom: 8px; }
-    @media (max-width: 600px) { .panel { padding: 28px 20px; } nav { padding: 14px 16px; } }
+    /* The page is drawn from the game's own top-down city: asphalt, the sand
+       pavement, taxi yellow, road markings as the dividers. */
+    :root {
+      --asphalt: #3e424a;
+      --asphalt-deep: #33363d;
+      --pavement: #ecdaa6;
+      --pavement-edge: #d9c48a;
+      --taxi: #ffc93c;
+      --marking: #f3f1ea;
+      --ink: #17181b;
+      --sea: #2e8fc7;
+      --display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
+      --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+      --measure: 34rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--marking);
+      background: var(--asphalt);
+    }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--taxi); outline-offset: 3px; }
+
+    h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; margin: 0; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+    h3 { font-size: 1.35rem; }
+    p { margin: 0 0 1em; max-width: var(--measure); }
+
+    .wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
+
+    /* Top bar */
+    .bar {
+      position: absolute; inset: 0 0 auto 0; z-index: 2;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem clamp(1rem, 3vw, 2rem);
+      font-weight: 700;
+    }
+    .bar a { text-decoration: none; color: var(--ink); background: var(--marking); padding: .35rem .8rem; border-radius: 999px; border: 2px solid var(--ink); font-size: .9rem; }
+    .bar a:hover { background: var(--taxi); }
+
+    /* Hero: the game's own frame, full bleed, the title in a panel framed like the game's pop-ups */
+    .hero { position: relative; background: var(--asphalt); }
+    .hero picture img {
+      width: 100%; height: min(86vh, 56.25vw); min-height: 460px;
+      object-fit: cover; object-position: 56% 45%;
+    }
+    .sign {
+      position: absolute; left: clamp(1rem, 5vw, 4rem); bottom: clamp(1rem, 5vw, 3.5rem);
+      max-width: 38rem;
+      background: var(--asphalt-deep);
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 6px var(--marking), 0 0 0 9px var(--ink), 0 18px 40px rgba(23,24,27,.45);
+      border-radius: 18px;
+      padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 2.25rem);
+    }
+    .sign h1 {
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      white-space: nowrap;
+      color: var(--taxi);
+      letter-spacing: .01em;
+      text-shadow: 0 4px 0 var(--ink);
+      -webkit-text-stroke: 2px var(--ink);
+      paint-order: stroke fill;
+    }
+    .sign .line { font-family: var(--display); font-size: clamp(1.3rem, 2.6vw, 1.7rem); margin: .35rem 0 .9rem; }
+    .sign p { color: #d9dbe0; margin-bottom: 1.25rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+    .button {
+      display: inline-block; font-family: var(--display); font-size: 1.15rem; text-decoration: none;
+      color: var(--ink); background: var(--taxi); border: 3px solid var(--ink); border-radius: 12px;
+      padding: .55rem 1.15rem .5rem; box-shadow: 0 4px 0 var(--ink);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .button:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
+    .button.quiet { background: var(--marking); }
+    .date { font-weight: 700; color: var(--taxi); }
+
+    /* Dividers are road markings */
+    .centre-line {
+      height: 10px; margin: 0;
+      background: repeating-linear-gradient(90deg, var(--taxi) 0 46px, transparent 46px 84px);
+    }
+    .zebra {
+      height: 44px;
+      background: repeating-linear-gradient(90deg, var(--marking) 0 22px, var(--asphalt) 22px 44px);
+    }
+
+    section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+
+    /* Preview */
+    .preview .wrap { display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+    .phone {
+      background: var(--ink); border-radius: 44px; padding: 12px;
+      box-shadow: 0 30px 60px rgba(0,0,0,.35);
+    }
+    .phone video { width: 100%; border-radius: 32px; aspect-ratio: 590 / 1280; background: var(--ink); }
+    .preview h2 { color: var(--taxi); margin-bottom: 1rem; }
+    .facts { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: .9rem; max-width: 36rem; }
+    .facts li { padding-left: 1.4rem; position: relative; }
+    .facts li::before { content: ""; position: absolute; left: 0; top: .55em; width: .65rem; height: .65rem; border-radius: 3px; background: var(--taxi); }
+    .facts strong { color: #fff; }
+
+    /* Districts: clips on the pavement */
+    .pavement { background: var(--pavement); color: var(--ink); }
+    .pavement h2 { margin-bottom: .75rem; }
+    .intro { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.25rem; }
+    .intro p { margin: 0; }
+    .clips { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+    .clips figure { margin: 0; }
+    .clips video { width: 100%; aspect-ratio: 590 / 1280; border-radius: 14px; border: 3px solid var(--ink); background: var(--ink); }
+    .clips figcaption { margin-top: .6rem; font-weight: 700; font-size: .9rem; line-height: 1.3; }
+
+    /* Screenshots */
+    .shots { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+    .shots a { scroll-snap-align: start; }
+    .shots img { width: 100%; border-radius: 16px; border: 3px solid var(--ink); }
+    .shots-section h2 { color: var(--taxi); margin-bottom: 2rem; }
+
+    /* Fair play */
+    .fair .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 3rem); }
+    .fair h3 { margin-bottom: .6rem; }
+    .fair p { font-size: 1rem; }
+    .fair h2 { grid-column: 1 / -1; margin-bottom: .5rem; }
+
+    footer { background: var(--asphalt-deep); padding: 2.5rem 0 3rem; font-size: .95rem; color: #c9ccd3; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    footer a { color: var(--taxi); }
+    footer p { margin: 0; }
+
+    @media (max-width: 1000px) {
+      .clips, .shots { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 46%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; }
+      .clips li, .shots a { scroll-snap-align: start; }
+    }
+    @media (max-width: 760px) {
+      .sign h1 { white-space: normal; }
+      .preview .wrap { grid-template-columns: 1fr; }
+      .phone { max-width: 300px; margin-inline: auto; }
+      .fair .wrap { grid-template-columns: 1fr; }
+      .hero picture img { height: 110vw; max-height: 640px; min-height: 380px; object-position: 56% 42%; }
+      .sign { position: relative; left: auto; bottom: auto; margin: -5rem 1rem 0; max-width: none; }
+      .hero { padding-bottom: 2.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .button { transition: none; }
+      .button:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <a class="brand" href="/">A Knight's Game</a>
-    <a href="#clips">Clips</a>
-    <a href="#screenshots">Screenshots</a>
-    <a href="mailto:aknightsgame@gmail.com">Contact</a>
-  </nav>
-
-  <div class="container wide">
-    <img class="header-img" src="media/header.jpg" alt="A yellow taxi drifting round a corner on a sunny island, by a wooden bridge and the sea">
-
-    <div class="hero">
+  <header class="hero">
+    <nav class="bar" aria-label="Site">
+      <a href="/">A Knight's Game</a>
+      <a href="mailto:aknightsgame@gmail.com">Contact</a>
+    </nav>
+    <picture>
+      <source media="(max-width: 760px)" srcset="media/header-small.jpg">
+      <img src="media/header.jpg" alt="Seen from above, a yellow taxi drifts to a stop beside a waiting passenger on a sunny island, skid marks behind it, a wooden bridge and the sea ahead." width="2400" height="1350">
+    </picture>
+    <div class="sign">
       <h1>Taxi Dash</h1>
-      <p class="tagline">Pick up. Drift. Drop off.</p>
-      <p class="lede">A one-thumb arcade driving game for iPhone and iPad, in portrait. Pick up fares, choose your own route through the city with an edge-of-screen compass, flick to turn, hold to brake and drift round corners to beat the clock.</p>
-      <p><span class="badge">iPhone &amp; iPad</span><span class="badge" style="background:#5a4410;border-color:#ffc93c;color:#ffe9a8;">Out 14 January 2027</span></p>
+      <p class="line">Pick up. Drift. Drop off.</p>
+      <p>A one-thumb arcade driving game for iPhone and iPad. Flick to turn, hold to brake, and get every fare there before the clock runs out. <span class="date">Out 14 January 2027.</span></p>
+      <div class="actions">
+        <a class="button" href="#preview">Watch the preview</a>
+        <a class="button quiet" href="#districts">See the districts</a>
+      </div>
     </div>
+  </header>
 
-    <div class="panel" id="preview">
-      <div class="preview">
-        <video src="media/preview.mp4" poster="media/preview.jpg" controls playsinline preload="metadata"></video>
+  <div class="centre-line" role="presentation"></div>
+
+  <section class="preview" id="preview">
+    <div class="wrap">
+      <div class="phone">
+        <video src="media/preview.mp4" poster="media/preview.jpg" controls playsinline preload="none" aria-label="Taxi Dash app preview, 30 seconds of gameplay"></video>
+      </div>
+      <div>
+        <h2>A city full of people in a hurry</h2>
+        <p>You get a clock, a cab and an edge-of-screen compass. The route is up to you. Stop in the zone for a full tip, swing a U-turn into a pickup for a bonus, or grab a bolt in the road and let a super boost take over.</p>
+        <ul class="facts">
+          <li><strong>15 districts</strong>, each changing how you drive: lifting bridges, traffic lights, dust storms, match days, icy slopes and power cuts.</li>
+          <li><strong>17 cabs</strong> to collect card by card, from a golf cart and an ice cream van to a fire truck and a monster truck.</li>
+          <li><strong>Driving School</strong> lessons teach every move, and a bump only slows you down.</li>
+          <li><strong>A weekend shift</strong> that's the same for everyone, with its own Game Center leaderboard.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="zebra" role="presentation"></div>
+
+  <section class="pavement" id="districts">
+    <div class="wrap">
+      <div class="intro">
         <div>
-          <h2 style="margin-top:0">App preview</h2>
-          <p>Real gameplay, captured from the game: six districts and six cabs, from a classic cab in Downtown to a golf cart on a super boost at the Seaside.</p>
-          <ul class="facts">
-            <li><strong>15 districts</strong>, each changing how you drive: lifting bridges, traffic lights, dust storms, match days, icy slopes, power cuts.</li>
-            <li><strong>17 cabs</strong> collected card by card, from a golf cart to a monster truck.</li>
-            <li><strong>Driving School</strong> lessons teach every move, and a crash only slows the cab: rated 4+.</li>
-            <li><strong>A weekend shift</strong> that's the same for everyone, with a Game Center leaderboard.</li>
-            <li><strong>Accessibility:</strong> Reduced Motion, Larger Text and Colour Cues. <strong>10 languages.</strong></li>
-            <li>Free, with optional rewarded ads only: no interstitials.</li>
-          </ul>
+          <h2>Every district drives differently</h2>
+          <p>Real gameplay, captured from the game.</p>
         </div>
       </div>
+      <ul class="clips">
+        <li><figure><video src="media/islands.mp4" poster="media/islands.jpg" muted loop playsinline preload="none" controls></video><figcaption>Choose your own route across the Islands</figcaption></figure></li>
+        <li><figure><video src="media/boost.mp4" poster="media/boost.jpg" muted loop playsinline preload="none" controls></video><figcaption>Grab a bolt and go super boost</figcaption></figure></li>
+        <li><figure><video src="media/size.mp4" poster="media/size.jpg" muted loop playsinline preload="none" controls></video><figcaption>Super size: ram straight through the traffic</figcaption></figure></li>
+        <li><figure><video src="media/bridge.mp4" poster="media/bridge.jpg" muted loop playsinline preload="none" controls></video><figcaption>Bridgeport's bridges lift for the boats</figcaption></figure></li>
+        <li><figure><video src="media/storm.mp4" poster="media/storm.jpg" muted loop playsinline preload="none" controls></video><figcaption>Dust storms in the desert hide the compass</figcaption></figure></li>
+        <li><figure><video src="media/match.mp4" poster="media/match.jpg" muted loop playsinline preload="none" controls></video><figcaption>Match day at the Stadium</figcaption></figure></li>
+        <li><figure><video src="media/night.mp4" poster="media/night.jpg" muted loop playsinline preload="none" controls></video><figcaption>Power cuts in the Night Market</figcaption></figure></li>
+      </ul>
     </div>
+  </section>
 
-    <div class="panel" id="clips">
-      <h2 style="margin-top:0">Clips</h2>
-      <div class="grid">
-        <figure>
-          <video src="media/islands.mp4" poster="media/islands.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Choose your own route across the Islands</figcaption>
-        </figure>
-        <figure>
-          <video src="media/boost.mp4" poster="media/boost.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Grab a bolt: super boost</figcaption>
-        </figure>
-        <figure>
-          <video src="media/size.mp4" poster="media/size.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Super size: ram the traffic</figcaption>
-        </figure>
-        <figure>
-          <video src="media/bridge.mp4" poster="media/bridge.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Bridgeport's bridges lift for the boats</figcaption>
-        </figure>
-        <figure>
-          <video src="media/storm.mp4" poster="media/storm.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Dust storms hide the compass</figcaption>
-        </figure>
-        <figure>
-          <video src="media/match.mp4" poster="media/match.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Match day at the Stadium</figcaption>
-        </figure>
-        <figure>
-          <video src="media/night.mp4" poster="media/night.jpg" controls muted loop playsinline preload="none"></video>
-          <figcaption>Power cuts in the Night Market</figcaption>
-        </figure>
+  <div class="zebra" role="presentation"></div>
+
+  <section class="shots-section">
+    <div class="wrap">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <a href="media/shot1.jpg"><img src="media/shot1.jpg" alt="Pick up. Drift. Drop off: the taxi beside a waiting passenger on the Islands" width="660" height="1434"></a>
+        <a href="media/shot2.jpg"><img src="media/shot2.jpg" alt="Grab a bolt. Go super: a super boost on the Seaside" width="660" height="1434"></a>
+        <a href="media/shot3.jpg"><img src="media/shot3.jpg" alt="Beat the lifting bridges: a bridge lifting in Bridgeport" width="660" height="1434"></a>
+        <a href="media/shot4.jpg"><img src="media/shot4.jpg" alt="Open 15 districts: the Districts page with its medals" width="660" height="1434"></a>
+        <a href="media/shot5.jpg"><img src="media/shot5.jpg" alt="Collect 17 cabs: the Cards page" width="660" height="1434"></a>
+        <a href="media/shot6.jpg"><img src="media/shot6.jpg" alt="A weekend shift for everyone: the Weekend Shift page and its leaderboard" width="660" height="1434"></a>
       </div>
     </div>
+  </section>
 
-    <div class="panel" id="screenshots">
-      <h2 style="margin-top:0">Screenshots</h2>
-      <div class="grid">
-        <figure>
-          <a href="media/shot1.jpg"><img src="media/shot1.jpg" alt="Pick up. Drift. Drop off." loading="lazy"></a>
-        </figure>
-        <figure>
-          <a href="media/shot2.jpg"><img src="media/shot2.jpg" alt="Grab a bolt. Go super!" loading="lazy"></a>
-        </figure>
-        <figure>
-          <a href="media/shot3.jpg"><img src="media/shot3.jpg" alt="Beat the lifting bridges" loading="lazy"></a>
-        </figure>
-        <figure>
-          <a href="media/shot4.jpg"><img src="media/shot4.jpg" alt="Open 15 districts" loading="lazy"></a>
-        </figure>
-        <figure>
-          <a href="media/shot5.jpg"><img src="media/shot5.jpg" alt="Collect 17 cabs" loading="lazy"></a>
-        </figure>
-        <figure>
-          <a href="media/shot6.jpg"><img src="media/shot6.jpg" alt="A weekend shift for everyone" loading="lazy"></a>
-        </figure>
+  <div class="centre-line" role="presentation"></div>
+
+  <section class="fair">
+    <div class="wrap">
+      <h2>Made for everyone</h2>
+      <div>
+        <h3>Easy to pick up</h3>
+        <p>One thumb, portrait, short shifts. Driving School lessons teach each move as it comes, and a crash never ends your shift. Rated 4+, with no violence.</p>
+      </div>
+      <div>
+        <h3>Accessible</h3>
+        <p>Reduced Motion turns off shake, zoom, spins and falling weather. Larger Text and Colour Cues, with shapes on everything shown by colour, are a switch away in Settings and the pause menu.</p>
+      </div>
+      <div>
+        <h3>Fair to play</h3>
+        <p>Free, in 10 languages. Ads are optional and rewarded only: no interstitials, ever. Every cab is earned by playing, never bought.</p>
       </div>
     </div>
-
-    <div class="panel">
-      <h2 style="margin-top:0">About</h2>
-      <p>Made by a solo developer in the UK. For press and featuring enquiries: <a href="mailto:aknightsgame@gmail.com">aknightsgame@gmail.com</a>.</p>
-      <a class="btn" href="privacy-policy.html">Privacy Policy</a>
-    </div>
-  </div>
+  </section>
 
   <footer>
-    &copy; 2026 A Knight's Game &nbsp;·&nbsp; <a href="mailto:aknightsgame@gmail.com">aknightsgame@gmail.com</a>
+    <div class="wrap">
+      <p>Taxi Dash is made by A Knight's Game, a solo developer in the UK.</p>
+      <p><a href="mailto:aknightsgame@gmail.com">aknightsgame@gmail.com</a> &nbsp; <a href="privacy-policy.html">Privacy policy</a> &nbsp; &copy; 2026</p>
+    </div>
   </footer>
+
+  <script>
+    // Clips play by themselves while on screen (muted), unless the viewer prefers reduced motion.
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var seen = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          else v.pause();
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.clips video').forEach(function (v) { seen.observe(v); });
+    })();
+  </script>
 </body>
 </html>
