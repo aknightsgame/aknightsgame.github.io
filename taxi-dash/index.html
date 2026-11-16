@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taxi Dash</title>
+  <meta name="description" content="Taxi Dash: a one-thumb arcade driving game for iPhone and iPad. Pick up. Drift. Drop off.">
+  <meta property="og:title" content="Taxi Dash">
+  <meta property="og:description" content="Pick up. Drift. Drop off. A one-thumb arcade driving game for iPhone and iPad.">
+  <meta property="og:image" content="https://aknightsgame.github.io/taxi-dash/media/header.jpg">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .wide { max-width: 1100px; }
+    .header-img { width: 100%; display: block; border-radius: 20px; border: 3px solid #5c5c94; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+    .tagline { font-size: 1.25rem; color: #ffc93c; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin: 8px 0 4px; }
+    .lede { max-width: 640px; margin: 12px auto 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 16px; }
+    .grid figure { margin: 0; }
+    .grid video, .grid img { width: 100%; display: block; border-radius: 14px; border: 2px solid #5c5c94; background: #000; }
+    .grid figcaption { font-size: 0.85rem; color: #c0c0da; margin-top: 8px; text-align: center; }
+    .preview { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+    .preview video { width: 300px; max-width: 100%; border-radius: 18px; border: 3px solid #5c5c94; background: #000; }
+    .preview div { flex: 1; min-width: 260px; }
+    .facts li { margin-bottom: 8px; }
+    @media (max-width: 600px) { .panel { padding: 28px 20px; } nav { padding: 14px 16px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="/">A Knight's Game</a>
+    <a href="#clips">Clips</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="mailto:aknightsgame@gmail.com">Contact</a>
+  </nav>
+
+  <div class="container wide">
+    <img class="header-img" src="media/header.jpg" alt="A yellow taxi drifting round a corner on a sunny island, by a wooden bridge and the sea">
+
+    <div class="hero">
+      <h1>Taxi Dash</h1>
+      <p class="tagline">Pick up. Drift. Drop off.</p>
+      <p class="lede">A one-thumb arcade driving game for iPhone and iPad, in portrait. Pick up fares, choose your own route through the city with an edge-of-screen compass, flick to turn, hold to brake and drift round corners to beat the clock.</p>
+      <p><span class="badge">iPhone &amp; iPad</span><span class="badge" style="background:#5a4410;border-color:#ffc93c;color:#ffe9a8;">Out 14 January 2027</span></p>
+    </div>
+
+    <div class="panel" id="preview">
+      <div class="preview">
+        <video src="media/preview.mp4" poster="media/preview.jpg" controls playsinline preload="metadata"></video>
+        <div>
+          <h2 style="margin-top:0">App preview</h2>
+          <p>Real gameplay, captured from the game: six districts and six cabs, from a classic cab in Downtown to a golf cart on a super boost at the Seaside.</p>
+          <ul class="facts">
+            <li><strong>15 districts</strong>, each changing how you drive: lifting bridges, traffic lights, dust storms, match days, icy slopes, power cuts.</li>
+            <li><strong>17 cabs</strong> collected card by card, from a golf cart to a monster truck.</li>
+            <li><strong>Driving School</strong> lessons teach every move, and a crash only slows the cab: rated 4+.</li>
+            <li><strong>A weekend shift</strong> that's the same for everyone, with a Game Center leaderboard.</li>
+            <li><strong>Accessibility:</strong> Reduced Motion, Larger Text and Colour Cues. <strong>10 languages.</strong></li>
+            <li>Free, with optional rewarded ads only: no interstitials.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="clips">
+      <h2 style="margin-top:0">Clips</h2>
+      <div class="grid">
+        <figure>
+          <video src="media/islands.mp4" poster="media/islands.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Choose your own route across the Islands</figcaption>
+        </figure>
+        <figure>
+          <video src="media/boost.mp4" poster="media/boost.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Grab a bolt: super boost</figcaption>
+        </figure>
+        <figure>
+          <video src="media/size.mp4" poster="media/size.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Super size: ram the traffic</figcaption>
+        </figure>
+        <figure>
+          <video src="media/bridge.mp4" poster="media/bridge.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Bridgeport's bridges lift for the boats</figcaption>
+        </figure>
+        <figure>
+          <video src="media/storm.mp4" poster="media/storm.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Dust storms hide the compass</figcaption>
+        </figure>
+        <figure>
+          <video src="media/match.mp4" poster="media/match.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Match day at the Stadium</figcaption>
+        </figure>
+        <figure>
+          <video src="media/night.mp4" poster="media/night.jpg" controls muted loop playsinline preload="none"></video>
+          <figcaption>Power cuts in the Night Market</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="panel" id="screenshots">
+      <h2 style="margin-top:0">Screenshots</h2>
+      <div class="grid">
+        <figure>
+          <a href="media/shot1.jpg"><img src="media/shot1.jpg" alt="Pick up. Drift. Drop off." loading="lazy"></a>
+        </figure>
+        <figure>
+          <a href="media/shot2.jpg"><img src="media/shot2.jpg" alt="Grab a bolt. Go super!" loading="lazy"></a>
+        </figure>
+        <figure>
+          <a href="media/shot3.jpg"><img src="media/shot3.jpg" alt="Beat the lifting bridges" loading="lazy"></a>
+        </figure>
+        <figure>
+          <a href="media/shot4.jpg"><img src="media/shot4.jpg" alt="Open 15 districts" loading="lazy"></a>
+        </figure>
+        <figure>
+          <a href="media/shot5.jpg"><img src="media/shot5.jpg" alt="Collect 17 cabs" loading="lazy"></a>
+        </figure>
+        <figure>
+          <a href="media/shot6.jpg"><img src="media/shot6.jpg" alt="A weekend shift for everyone" loading="lazy"></a>
+        </figure>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 style="margin-top:0">About</h2>
+      <p>Made by a solo developer in the UK. For press and featuring enquiries: <a href="mailto:aknightsgame@gmail.com">aknightsgame@gmail.com</a>.</p>
+      <a class="btn" href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 A Knight's Game &nbsp;·&nbsp; <a href="mailto:aknightsgame@gmail.com">aknightsgame@gmail.com</a>
+  </footer>
+</body>
+</html>
